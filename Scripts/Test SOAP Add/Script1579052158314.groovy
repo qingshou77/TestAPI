@@ -21,3 +21,17 @@ WS.verifyResponseStatusCode(response, 200)
 
 WS.verifyElementPropertyValue(response, 'AddResult', 5)
 
+//Get all response data
+String xmltest = response.responseBodyContent
+def dataValue = new XmlSlurper().parseText(xmltest)
+
+def result = dataValue.AddResult
+
+println('Result: ' + result)
+
+//Assign result to the global so we can reuse / call from other TC
+GlobalVariable.add = result
+println('Add:' + GlobalVariable.add )
+
+
+
